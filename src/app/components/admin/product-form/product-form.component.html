@@ -1,0 +1,76 @@
+<mat-card>
+    <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+        <mat-form-field class="form-group">
+            <mat-label>Product Name</mat-label>
+            <input matInput placeholder="Product Name" formControlName="name" class="form-control">
+            <mat-error *ngIf="productForm.get('name').invalid && productForm.get('name').touched">
+                {{getErrorMessage(productForm.get("name"))}}</mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="form-group">
+            <mat-label>Unit Price</mat-label>
+                <input matInput placeholder="Unit Price" [min]="0" formControlName="unitPrice" class="form-control">
+            <mat-error *ngIf="productForm.get('unitPrice').invalid && productForm.get('unitPrice').touched">
+                {{getErrorMessage(productForm.get("unitPrice"))}}</mat-error>
+        </mat-form-field>
+        <!-- <div *ngIf="productForm.get('catrgory')!=null"> -->
+        <mat-form-field class="form-group">
+            <mat-label>Category</mat-label>
+            <mat-select formControlName="category" id="category" class="form-control">
+                <!-- <mat-option value=""></mat-option> -->
+                <mat-option *ngFor="let c of categories$ | async " [value]="c.id">
+                    {{c.categoryName }}
+                </mat-option>
+            </mat-select>
+            <mat-error *ngIf="productForm.get('category').touched &&productForm.get('category').invalid ">
+                {{getErrorMessage(productForm.get("category"))}}</mat-error>
+
+        </mat-form-field>
+        <!-- </div> -->
+
+
+        <!-- <div *ngIf="productForm.get('imageUrl')!=null"> -->
+
+        <mat-form-field class="form-group">
+            <mat-label>Image Url</mat-label>
+            <input matInput placeholder="Image Url" formControlName="imageUrl" class="form-control">
+            <mat-error *ngIf="productForm.get('imageUrl').invalid && productForm.get('imageUrl').touched">
+                {{getErrorMessage(productForm.get("imageUrl"))}}</mat-error>
+        </mat-form-field>
+
+
+        <!-- <div class="form-group">
+            <label for="imageUrl">Image Url</label>
+            <div *ngIf="productForm.get('imageUrl').touched && productForm.get('imageUrl').hasError('required')"
+                class="alert alert-danger">Required</div>
+            <input formControlName="imageUrl" id="imageUrl" type="text" class="form-control">
+        </div> -->
+
+        <!-- <div class="form-group">
+            <label for="catrgory">Catrgory</label>
+            <div *ngIf="productForm.get('category').touched && productForm.get('category').hasError('required')"
+                class="alert alert-danger">Required</div>
+            <select formControlName="category" id="catrgory" class="form-control">
+                <option value=""></option>
+                <option *ngFor="let c of categories$ | async" [value]="c.id">
+                    {{c.categoryName }}
+                </option>
+            </select>
+        </div> -->
+        <!-- <label for="price">Product Unit Price</label>
+        <div *ngIf="productForm.get('unitPrice').touched && productForm.get('unitPrice').hasError('required')"
+            class="alert alert-danger">Required</div>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text">$</span>
+            </div>
+            <input formControlName="unitPrice" id="price" type="text" class="form-control">
+        </div> -->
+
+
+
+
+        <button [disabled]="!productForm.valid" class="btn btn-primary">Save</button>
+
+    </form>
+</mat-card>

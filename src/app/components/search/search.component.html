@@ -1,0 +1,22 @@
+<!-- <div class="form-header">
+
+    <input #myInput class="au-input au-input-xl" type="text"
+            placeholder="Search for products ..."
+            (keyup.enter)="doSearch(myInput.value)" />
+    
+    <button (click)="doSearch(myInput.value)" class="au-btn-submit">
+        Search
+    
+    </button>
+</div> -->
+<div class="form-inline my-2 my-lg-0">
+
+    <input #myInput class="form-control mr-sm-2" type="text" placeholder="Search for products ..."
+        (keyup.enter)="doSearch(myInput.value)" aria-label="Search" />
+
+    <button (click)="doSearch(myInput.value)" class="btn btn-secondary my-2 my-sm-0">
+        Search
+
+    </button>
+</div>
+
